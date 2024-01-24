@@ -1,19 +1,18 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
-
-
-
-
-
 class TradeService{
+    getTradeProjects(id) {
+        const projects = dbContext.
+    }
 
     async deleteTrade(id, userId) {
         const trade =  await this.getTrade(id)
         if(userId != trade.profileId){
             throw new Forbidden('Get out of here')
         }
-        await trade.deleteOne()
+        trade.archived = !trade.archived
+        await trade.save()
         //TODO call the delete Project function for all projects of the trade
     }
     async editTrade(id, payload, userId) {

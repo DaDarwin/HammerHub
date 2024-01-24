@@ -10,10 +10,19 @@ export class TradeController extends BaseController{
         super('api/trades')
         this.router
         .get('/:id', this.getTrade)
+        .get(':id/projects', this.getTradeProjects)
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.createTrade)
         .put('/:id', this.editTrade)
         .delete('/:id', this.deleteTrade)
+    }
+    async getTradeProjects(req, res, next) {
+        try {
+            res.send(await tradeService.getTradeProjects(req.params.id))
+        } 
+        catch (error) {
+        next(error)    
+        }
     }
     async deleteTrade(req, res, next) {
         try {
