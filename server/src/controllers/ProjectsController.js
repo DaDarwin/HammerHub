@@ -1,6 +1,7 @@
 import BaseController from "../utils/BaseController.js"
 import { projectsService } from "../services/ProjectsService.js"
 import { Auth0Provider } from "@bcwdev/auth0provider"
+import { picturesService } from "../services/PicturesService.js"
 
 
 export class ProjectsController extends BaseController {
@@ -10,14 +11,15 @@ export class ProjectsController extends BaseController {
       .get(`/:projectId`, this.getProjectById)
       .get(`/:albumId/pictures`, this.getPicturesInProject)
 
-
       .use(Auth0Provider.getAuthorizedUserInfo)
 
       .post('', this.createProject)
       .put(`/:projectId`, this.editProject)
+      .delete(`/:projectId`, this.archiveProject)
 
 
   }
+
   async getProjectById(request, response, next) {
     try {
       const projectId = request.params.projectId
@@ -35,13 +37,7 @@ export class ProjectsController extends BaseController {
       next(error)
     }
   }
-  editProject(request, response, next) {
-    try {
 
-    } catch (error) {
-      next(error)
-    }
-  }
   async createProject(request, response, next) {
     try {
       const projectData = request.body
@@ -53,7 +49,23 @@ export class ProjectsController extends BaseController {
       next(error)
     }
   }
-
+  async editProject(request, response, next) {
+    try {
+      //TODO finish writing this out based on params we set in the project
+    } catch (error) {
+      next(error)
+    }
+  }
+  async archiveProject(request, response, next) {
+    try {
+      const projectId = request.params.projectId
+      const userId = request.userInfo.id
+      const project = await projectsService.archiveProject(projectId, userId)
+      response.send(project)
+    } catch (error) {
+      next(error)
+    }
+  }
 
 }
 

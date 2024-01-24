@@ -1,8 +1,9 @@
 import { dbContext } from "../db/DbContext.js"
-import { BadRequest } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 
 class ProjectsService {
+
 
   async getProjectById(projectId) {
     const project = await dbContext.Projects.findById(projectId).populate('creator', 'name picture')
@@ -19,7 +20,17 @@ class ProjectsService {
     return project
   }
 
-
+  async editProject(projectData) {
+    //TODO finish after the controller function is written
+  }
+  async archiveProject(projectId, userId) {
+    const projectToArchive = await this.getProjectById(projectId)
+    if (projectToArchive.creatorId != userId)
+      throw new Forbidden('Not your project to delete')
+    projectToArchive.archived = !projectToArchive.archived
+    await projectToArchive.save()
+    return projectToArchive
+  }
 
 }
 export const projectsService = new ProjectsService()
