@@ -18,7 +18,9 @@ class TradeService{
     }
     async editTrade(id, payload, userId) {
         const trade = await this.getTrade(id)
-
+        if(userId != trade.profileId){
+            throw new Forbidden('Get out of here')
+        }
         trade.extraInfo = payload.extraInfo? payload.extraInfo : trade.extraInfo
         trade.isLicensed = payload.isLicensed != undefined? payload.isLicensed : trade.isLicensed
 
