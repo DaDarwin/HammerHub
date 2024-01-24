@@ -2,8 +2,10 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
 class TradeService{
-    getTradeProjects(id) {
-        const projects = dbContext.
+    
+    
+    async getTradeProjects(id) {
+        return await dbContext.Projects.find({tradeId: id})
     }
 
     async deleteTrade(id, userId) {
