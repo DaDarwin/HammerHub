@@ -20,8 +20,13 @@ class ProjectsService {
     return project
   }
 
-  async editProject(projectData) {
-    //TODO finish after the controller function is written
+  async editProject(projectId, projectData) {
+    const originalProject = await this.getProjectById(projectId)
+    originalProject.title = projectData.title ? projectData.title : originalProject.title
+    originalProject.coverImg = projectData.coverImg ? projectData.coverImg : originalProject.coverImg
+    originalProject.description = projectData.description ? projectData.description : originalProject.description
+    await originalProject.save()
+    return originalProject
   }
   async archiveProject(projectId, userId) {
     const projectToArchive = await this.getProjectById(projectId)

@@ -51,7 +51,10 @@ export class ProjectsController extends BaseController {
   }
   async editProject(request, response, next) {
     try {
-      //TODO finish writing this out based on params we set in the project
+      const projectId = request.params.projectId
+      const projectData = request.body
+      const project = await projectsService.editProject(projectId, projectData)
+      response.send(project)
     } catch (error) {
       next(error)
     }
@@ -66,6 +69,7 @@ export class ProjectsController extends BaseController {
       next(error)
     }
   }
+
 
 }
 
