@@ -4,9 +4,9 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 class TradeService{
     
     
-    async getTradeProjects(id) {
-        return await dbContext.Projects.find({tradeId: id})
-    }
+    // async getTradeProjects(id) {
+    //     return await dbContext.Projects.find({tradeId: id})
+    // }
 
     async deleteTrade(id, userId) {
         const trade =  await this.getTrade(id)
@@ -41,6 +41,7 @@ class TradeService{
         if(!trade.id){
             throw new BadRequest(`No Trade wit id: ${id}`)
         }
+        await trade.populate('projects')
         return trade
     }
  

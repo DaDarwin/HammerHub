@@ -23,3 +23,9 @@ TradeSchema.virtual('profile', {
     justOne: true,
 })
 
+TradeSchema.virtual('projects', {
+    localField: '_id',
+    foreignField: 'tradeId',
+    ref: 'Project',
+})
+
