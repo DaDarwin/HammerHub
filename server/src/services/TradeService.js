@@ -16,8 +16,8 @@ class TradeService{
     // }
 
     async deleteTrade(id, userId) {
-        const trade =  await this.getTrade(id)
-        if(userId != trade.profileId){
+        const trade = await this.getTradeById(id)
+        if (userId != trade.profileId) {
             throw new Forbidden('Get out of here')
         }
         trade.archived = !trade.archived
@@ -25,33 +25,41 @@ class TradeService{
         return `Trade ${trade.workType} deleted`
     }
     async editTrade(id, payload, userId) {
-        const trade = await this.getTrade(id)
-        if(userId != trade.profileId){
+        const trade = await this.getTradeById(id)
+        if (userId != trade.profileId) {
             throw new Forbidden('Get out of here')
         }
-        trade.extraInfo = payload.extraInfo? payload.extraInfo : trade.extraInfo
-        trade.isLicensed = payload.isLicensed != undefined? payload.isLicensed : trade.isLicensed
+        trade.extraInfo = payload.extraInfo ? payload.extraInfo : trade.extraInfo
+        trade.isLicensed = payload.isLicensed != undefined ? payload.isLicensed : trade.isLicensed
 
         await trade.save()
 
         return trade
     }
-    
-    async createTrade(payload, userId){
+
+    async createTrade(payload, userId) {
         payload.profileId = userId
         return await dbContext.Trade.create(payload)
 
     }
 
-    async getTrade(id){
+    async getTradeById(id) {
         const trade = await dbContext.Trade.findById(id)
-        if(!trade.id){
+        if (!trade.id) {
             throw new BadRequest(`No Trade wit id: ${id}`)
         }
         await trade.populate('projects')
         return trade
     }
- 
+
+    async getAllTrades() {
+        const trades = await dbContext.Trade.find()
+        return trades
+    }
+
+
+
+
 }
 
 

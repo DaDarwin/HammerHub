@@ -6,8 +6,8 @@ import { logger } from "../utils/Logger.js";
 
 
 
-export class TradeController extends BaseController{
-    constructor(){
+export class TradeController extends BaseController {
+    constructor() {
         super('api/trades')
         this.router
         .get('', this.getTrades)
@@ -38,33 +38,42 @@ export class TradeController extends BaseController{
     async deleteTrade(req, res, next) {
         try {
             res.send(await tradeService.deleteTrade(req.params.id, req.userInfo.id))
-        } 
+        }
         catch (error) {
-        next(error)    
+            next(error)
         }
     }
     async editTrade(req, res, next) {
         try {
             res.send(await tradeService.editTrade(req.params.id, req.body, req.userInfo.id))
-        } 
+        }
         catch (error) {
-        next(error)    
+            next(error)
         }
     }
     async createTrade(req, res, next) {
         try {
             res.send(await tradeService.createTrade(req.body, req.userInfo.id))
-        } 
+        }
         catch (error) {
-        next(error)    
+            next(error)
         }
     }
-    async getTrade(req, res, next) {
+    async getTradeById(req, res, next) {
         try {
-            res.send(await tradeService.getTrade(req.params.id))
-        } 
+            res.send(await tradeService.getTradeById(req.params.id))
+        }
         catch (error) {
-        next(error)    
+            next(error)
+        }
+    }
+
+    async getAllTrades(request, response, next) {
+        try {
+            const trades = await tradeService.getAllTrades()
+            response.send(trades)
+        } catch (error) {
+            next(error)
         }
     }
 }

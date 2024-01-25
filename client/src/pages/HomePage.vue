@@ -1,9 +1,15 @@
 <template>
   <!-- TODO change CSS properties to look good on mobile- v-if's? -->
+  <!-- TODO add hammer to home page -->
   <div class="container-fluid">
     <div class="row text-end bg-top p-2">
-      <div class="col-12">
-        <Login />
+      <div class="d-flex">
+        <div class="col-11">
+          <img class=" justify-content-center img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        </div>
+        <div class="col-1">
+          <Login />
+        </div>
 
       </div>
 

@@ -11,6 +11,7 @@ export class ProjectsController extends BaseController {
       .get(`/:projectId`, this.getProjectById)
       .get(`/:albumId/pictures`, this.getPicturesInProject)
       .get('', this.getProjects)
+      .get(`/:projectId/pictures`, this.getPicturesInProject)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
 
