@@ -25,6 +25,8 @@ class TradeService{
         trade.extraInfo = payload.extraInfo? payload.extraInfo : trade.extraInfo
         trade.isLicensed = payload.isLicensed != undefined? payload.isLicensed : trade.isLicensed
 
+        await trade.save()
+
         return trade
     }
     
