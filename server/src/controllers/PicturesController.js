@@ -8,6 +8,7 @@ export class PicturesController extends BaseController {
         this.router
             .use(auth0provider.getAuthorizedUserInfo)
             .post('', this.createPicture)
+            .delete('/:pictureId', this.deletePicture)
     }
 
     async createPicture(request, response, next) {
@@ -16,6 +17,18 @@ export class PicturesController extends BaseController {
             pictureData.creatorId = request.userInfo.id
             const picture = await picturesService.createPicture(pictureData)
             response.send(picture)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async deletePicture(request, response, next) {
+        try {
+            const pictureId = request.params.pictureId
+            const userId = request.userInfo.id
+            const picture = await picturesService.deletePicture(pictureId, userId)
+            response.send(picture)
+
         } catch (error) {
             next(error)
         }
