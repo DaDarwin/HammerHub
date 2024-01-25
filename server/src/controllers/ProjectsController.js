@@ -9,7 +9,7 @@ export class ProjectsController extends BaseController {
     super('api/projects')
     this.router
       .get(`/:projectId`, this.getProjectById)
-      .get(`/:albumId/pictures`, this.getPicturesInProject)
+      .get(`/:projectId/pictures`, this.getPicturesInProject)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
 
