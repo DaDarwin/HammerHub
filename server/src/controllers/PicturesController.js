@@ -1,4 +1,4 @@
-import auth0provider, { Auth0Provider } from "@bcwdev/auth0provider";
+import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { picturesService } from "../services/PicturesService.js";
 
@@ -6,7 +6,7 @@ export class PicturesController extends BaseController {
     constructor() {
         super('api/pictures')
         this.router
-            .use(auth0provider.getAuthorizedUserInfo)
+            .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createPicture)
             .delete('/:pictureId', this.deletePicture)
     }

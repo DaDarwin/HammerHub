@@ -1,6 +1,6 @@
 <template>
-  <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+  <span class="">
+    <button class="btn selectable lighten-30 text-lowercase radley my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
@@ -49,4 +49,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.radley {
+  font-family: 'Radley', serif;
+  font-size: 20px;
+  color: #214E34
+}
+</style>
