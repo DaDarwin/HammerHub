@@ -42,7 +42,7 @@ export class TradeController extends BaseController{
     }
     async createTrade(req, res, next) {
         try {
-            res.send(await tradeService.createTrade(req.body))
+            res.send(await tradeService.createTrade(req.body, req.userInfo.id))
         } 
         catch (error) {
         next(error)    

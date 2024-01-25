@@ -10,7 +10,7 @@ export const TradeSchema = new Schema(
         extraInfo: { type: String, minLength: 0, maxLength: 100 },
         isLicensed: { type: Boolean, default: false },
         archived: { type: Boolean, default: false },
-        profileId: { type: Schema.Types.ObjectId, ref: 'Profile' }
+        profileId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
     },
     { timestamps: true, toJSON: { virtuals: true } }
 )
