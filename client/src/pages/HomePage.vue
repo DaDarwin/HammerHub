@@ -1,8 +1,10 @@
 <template>
   <!-- TODO change CSS properties to look good on mobile- v-if's? -->
+  <!-- TODO add hammer to home page -->
   <div class="container-fluid">
     <div class="row text-end bg-top p-2">
       <div class="col-12">
+        <img src="" alt="">
         <Login />
 
       </div>
