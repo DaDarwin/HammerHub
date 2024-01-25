@@ -15,7 +15,7 @@ class TradeService{
         }
         trade.archived = !trade.archived
         await trade.save()
-        //TODO call the delete Project function for all projects of the trade
+        return `Trade ${trade.workType} deleted`
     }
     async editTrade(id, payload, userId) {
         const trade = await this.getTrade(id)
