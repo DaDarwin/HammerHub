@@ -11,7 +11,7 @@ class PicturesService {
             throw new Forbidden("not yours to delete ma'am");
         }
 
-        await pictureToDelete.save();
+        await pictureToDelete.deleteOne();
         return `${pictureToDelete} has been deleted`;
     }
 
