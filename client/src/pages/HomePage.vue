@@ -5,8 +5,7 @@
     <div class="row text-end bg-top p-2">
       <div class="d-flex">
         <div class="col-11">
-          <img class=" justify-content-center img-fluid" src="client / src / assets / img / hammer.png"
-            alt="cartoon hammer">
+          <img class=" justify-content-center img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
         </div>
         <div class="col-1">
           <Login />
