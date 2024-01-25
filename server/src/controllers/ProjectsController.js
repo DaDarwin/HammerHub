@@ -10,6 +10,7 @@ export class ProjectsController extends BaseController {
     this.router
       .get(`/:projectId`, this.getProjectById)
       .get(`/:albumId/pictures`, this.getPicturesInProject)
+      .get('', this.getProjects)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
 
@@ -18,6 +19,14 @@ export class ProjectsController extends BaseController {
       .delete(`/:projectId`, this.archiveProject)
 
 
+  }
+  async getProjects(req, res, next) {
+    try {
+      res.send(await projectsService.getProjects(req.query.search, req.query.isLicensed))
+    } 
+    catch (error) {
+      next(error)
+    }
   }
 
   async getProjectById(request, response, next) {

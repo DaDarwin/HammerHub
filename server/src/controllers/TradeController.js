@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { tradeService } from "../services/TradeService.js";
+import { logger } from "../utils/Logger.js";
 
 
 
@@ -9,12 +10,22 @@ export class TradeController extends BaseController{
     constructor(){
         super('api/trades')
         this.router
+        .get('', this.getTrades)
         .get('/:id', this.getTrade)
         // .get(':id/projects', this.getTradeProjects)
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.createTrade)
         .put('/:id', this.editTrade)
         .delete('/:id', this.deleteTrade)
+    }
+    async getTrades(req, res, next) {
+        try {
+            logger.log(req)
+            res.send(await tradeService.getTrades(new RegExp(req.query.search, 'ig'), req.query.isLicensed))
+        } 
+        catch (error) {
+            next(error)
+        }
     }
     // async getTradeProjects(req, res, next) {
     //     try {

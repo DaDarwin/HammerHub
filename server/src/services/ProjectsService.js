@@ -1,8 +1,42 @@
 import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
+import { logger } from "../utils/Logger.js"
+
+
+function _theStringFilter(projects, filter){//FIXME - 
+  logger.log('filter:', filter)
+  let filtered = []
+  filtered.push(projects.filter( (project) => {
+    logger.log(project)
+    project.title.toLowerCase().includes(filter.toLowerCase())
+  }))
+  filtered.push(projects.filter( (project) => {
+    project.description.toLowerCase().includes(filter.toLowerCase())
+  }))
+  return filtered
+  // || project.pictures.forEach( picture => picture.description.toLowerCase().includes(filter.toLowerCase()))
+}
+
+function _theLicenseFilter(projects){
+  logger.log('isLicensed Using')
+  return projects.filter( (project) => {
+    project.trade.isLicensed == true
+  })
+}
 
 
 class ProjectsService {
+  async getProjects(query, isLicensed) {//NOTE ask mick about counting number of times ReGex is found for searching through relevance
+    let projects = await dbContext.Projects.find().populate('trade pictures')
+    if(isLicensed){
+      projects = _theLicenseFilter(projects)
+    }
+    if(query){
+      projects =  _theStringFilter(projects, query)
+    }
+    logger.log('Filtered Projects:', projects)
+    return projects
+  }
 
 
   async getProjectById(projectId) {

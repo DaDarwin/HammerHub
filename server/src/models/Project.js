@@ -22,3 +22,16 @@ ProjectSchema.virtual('creator', {
   justOne: true
 })
 
+ProjectSchema.virtual('trade', {
+  localField: 'tradeId',
+  foreignField: '_id',
+  ref: 'Trade',
+  justOne: true,
+})
+
+ProjectSchema.virtual('pictures', {
+  localField: '_id',
+  foreignField: 'projectId',
+  ref: 'Picture',
+})
+

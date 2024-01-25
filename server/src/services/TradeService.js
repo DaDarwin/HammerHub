@@ -1,7 +1,14 @@
 import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
+import { logger } from "../utils/Logger.js"
 
 class TradeService{
+    async getTrades(query, licensePref) {
+        const filter = {$or: [ {workType: {$regex:query}}, {extraInfo: {$regex:query}} ]}
+        logger.log(filter)
+        licensePref? filter.isLicensed = true : ''
+        return await dbContext.Trade.find(filter)
+    }
     
     
     // async getTradeProjects(id) {
