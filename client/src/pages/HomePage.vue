@@ -1,43 +1,61 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <!-- TODO change CSS properties to look good on mobile- v-if's? -->
+  <div class="container-fluid">
+    <div class="row text-end bg-top p-2">
+      <div class="col-12">
+        <Login />
+
+      </div>
+
+    </div>
+    <div class="row bg align-items-center text-center">
+      <div class="col-12">
+        <h1 class="radley mb-4">
+          Welcome to HammerHub
+        </h1>
+        <p class="fs-3 carlito">
+          A place for all your construction projects to be displayed <br> so the right people can find you for hire.
+        </p>
+        <Login />
+        <!-- TODO see if we can make the login and the sign up different components that do different things  -->
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
+import Login from '../components/Login.vue';
+
 export default {
   setup() {
-    return {
-      
-    }
-  }
+    return {};
+  },
+  components: { Login }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
+.bg-top {
+  height: 5vh;
+  // max-width: 100vw;
+  background-color: #F4FDFF;
+}
 
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
+.bg {
+  height: 95vh;
+  // max-width: 100vw;
+  background-color: #F4FDFF;
+}
 
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.radley {
+  font-family: 'Radley', serif;
+  font-size: 80px;
+  color: #214E34
+}
+
+.carlito {
+  font-family: 'Carlito', sans-serif;
+  color: #214E34
 }
 </style>
