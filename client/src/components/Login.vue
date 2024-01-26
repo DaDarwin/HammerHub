@@ -18,11 +18,7 @@
                 Manage Account
               </div>
             </router-link>
-            <router-link :to="{ name: 'Your Purpose' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Your Purpose
-              </div>
-            </router-link>
+
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
