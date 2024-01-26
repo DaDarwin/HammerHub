@@ -22,7 +22,7 @@
             Welcome to HammerHub
           </h1>
           <p class="fs-3 carlito">
-            A place for all your construction projects to be displayed <br> so the right people can find you for hire.
+            A place for all your construction projects to be <br>displayed so the right people can find you for hire.
           </p>
         </div>
 
@@ -33,10 +33,10 @@
         </div>
         <div class="d-flex justify-content-center">
           <!-- REVIEW why are these not adjusting to col-12 on mobile? -->
-          <RouterLink class="col-12 col-md-4 selectable card  mx-3 mb-2" :to="{ name: 'Profile Page' }">
+          <RouterLink class="col-12 col-md-4 selectable card  mx-3 mb-2" :to="{ name: 'Purpose Page' }">
             <div class="col-12 col-md-4 selectable card  mx-3 mb-2">
               <h2 class="text-center radley-card mt-5 mb-0">I'm a worker</h2>
-              <hr class="m-3">
+              <hr class="m-3 green">
               <p class="m-3 text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
             </div>
           </RouterLink>
@@ -44,7 +44,7 @@
           <RouterLink :to="{ name: 'Search Page' }">
             <div class="col-12 col-md-4 selectable card mx-3 mb-2">
               <h2 class="text-center radley-card mt-5 mb-0">I'm a looker</h2>
-              <hr class="m-3">
+              <hr class="m-3 green">
               <p class="m-3 text-center carlito">Someone looking for projects that <br>match my desire for hire</p>
             </div>
           </RouterLink>
@@ -64,7 +64,7 @@ export default {
   setup() {
     const router = useRouter()
     watch(() => AppState.account, () => {
-      router.push({ name: 'Profile Page' })
+      router.push({ name: 'Purpose Page' })
     })
     return {
 
@@ -77,13 +77,11 @@ export default {
 <style scoped lang="scss">
 .bg-top {
   height: 5vh;
-  // max-width: 100vw;
   background-color: #F4FDFF;
 }
 
 .bg {
   height: 95vh;
-  // max-width: 100vw;
   background-color: #F4FDFF;
 }
 
@@ -107,6 +105,10 @@ export default {
 
 .carlito {
   font-family: 'Carlito', sans-serif;
+  color: #214E34
+}
+
+.green {
   color: #214E34
 }
 
