@@ -1,15 +1,15 @@
 <template>
   <div class="PurposePage container-fluid bg ">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12  ">
+    <div class="row pt-4  ">
+      <div class="col-12 justify-content-end ">
         <h1 class=" text-center radley-title">
           What would you like to get done today?
         </h1>
       </div>
     </div>
-    <div class="row justify-content-center align-items-center ">
+    <div class="row  ">
 
-      <RouterLink class="col-12 col-md-4 p-0 selectable card  " :to="{ name: 'Business Page' }">
+      <RouterLink class="col-12 col-md-4 mx-2 selectable card justify-content-center  " :to="{ name: 'Business Page' }">
         <div>
           <h2 class="text-center radley-card mt-3 mb-0">Learn about business</h2>
           <hr class="m-3">
@@ -18,7 +18,7 @@
         </div>
       </RouterLink>
 
-      <RouterLink class="col-12 col-md-4 p-0 selectable card" :to="{ name: 'Profile Page' }">
+      <RouterLink class="col-12 col-md-4 mx-2 selectable card" :to="{ name: 'Profile Page' }">
         <div>
           <h2 class="text-center radley-card mt-5 mb-0">Edit my profile</h2>
           <hr class="m-3">
@@ -51,7 +51,7 @@ export default {
 
 .radley-title {
   font-family: 'Radley', serif;
-  font-size: 50px;
+  font-size: 40px;
   color: #214E34
 }
 

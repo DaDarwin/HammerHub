@@ -1,8 +1,6 @@
 <template>
-  <!-- TODO change CSS properties to look good on mobile- v-if's? -->
-
-  <div class="container-fluid">
-    <div class="row text-end bg-top p-2">
+  <div class="container-fluid bg">
+    <div class="row   p-2">
 
 
       <div class="col-7 d-flex justify-content-start">
@@ -13,44 +11,46 @@
         <Login />
       </div>
 
-      <!-- TODO on desktop make these closer together? More center to page? -->
     </div>
-    <div class="container-fluid">
-      <div class="row bg align-items-center text-center">
-        <div class="col-12">
-          <h1 class="radley mb-4">
-            Welcome to HammerHub
-          </h1>
-          <p class="fs-3 carlito">
-            A place for all your construction projects to be <br>displayed so the right people can find you for hire.
-          </p>
-        </div>
-
-        <div class="col-12">
-          <h1 class="text-center radley-title">
-            What is your purpose?
-          </h1>
-        </div>
-        <div class="d-flex justify-content-center">
-          <!-- REVIEW why are these not adjusting to col-12 on mobile? -->
-          <RouterLink :to="{ name: 'Purpose Page' }">
-            <div class="col-12 col-md-4 selectable card mx-3 mb-2">
-              <h2 class="text-center radley-card mt-5 mb-0">I'm a worker</h2>
-              <hr class="m-3 green">
-              <p class="m-3 text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
-            </div>
-          </RouterLink>
-
-          <RouterLink :to="{ name: 'Search Page' }">
-            <div class="col-12 col-md-4 selectable card mx-3 mb-2">
-              <h2 class="text-center radley-card mt-5 mb-0">I'm a looker</h2>
-              <hr class="m-3 green">
-              <p class="m-3 text-center carlito">Someone looking for projects that <br>match my desire for hire</p>
-            </div>
-          </RouterLink>
-        </div>
+    <!-- Top text -->
+    <section class="row text-center">
+      <div class="col-12">
+        <h1 class="radley mb-4">
+          Welcome to HammerHub
+        </h1>
+        <p class="fs-3 carlito">
+          A place for all your construction projects to be <br>displayed so the right people can find you for hire.
+        </p>
       </div>
-    </div>
+    </section>
+    <section class="row text-center p-3">
+      <div class="col-12">
+        <h1 class="radley-title">
+          What is your purpose?
+        </h1>
+      </div>
+    </section>
+    <section class="row align-items-center">
+
+
+      <!-- REVIEW why are these not adjusting to col-12 on mobile? -->
+      <RouterLink :to="{ name: 'Purpose Page' }">
+        <div class="col-12 col-md-4 selectable card mx-3 mb-2">
+          <h2 class="text-center radley-card mt-5 mb-0">I'm a worker</h2>
+          <hr class="m-3 green">
+          <p class="m-3 text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
+        </div>
+      </RouterLink>
+
+      <RouterLink :to="{ name: 'Search Page' }">
+        <div class="col-12 col-md-4 selectable card mx-3 mb-2">
+          <h2 class="text-center radley-card mt-5 mb-0">I'm a looker</h2>
+          <hr class="m-3 green">
+          <p class="m-3 text-center carlito">Someone looking for projects that <br>match my desire for hire</p>
+        </div>
+      </RouterLink>
+
+    </section>
   </div>
 </template>
 
@@ -81,7 +81,7 @@ export default {
 }
 
 .bg {
-  height: 95vh;
+  height: 100vh;
   background-color: #F4FDFF;
 }
 
