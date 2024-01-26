@@ -22,7 +22,7 @@
         </div>
       </RouterLink>
 
-      <RouterLink class="col-12 col-md-4 justify-content-center d-flex " :to="{ name: 'Profile Page' }">
+      <RouterLink class="col-12 col-md-4 justify-content-center d-flex " :to="{ name: 'Private Profile Page' }">
         <div class="selectable card mb-2">
           <h2 class="text-center radley-card mt-5">Edit my profile</h2>
           <hr class="m-3 green">
@@ -45,10 +45,6 @@ import Login from '../components/Login.vue';
 export default {
   setup() {
     return {
-      account: computed(() => AppState.account),
-      async logout() {
-        AuthService.logout({ returnTo: window.location.origin });
-      }
     };
   },
   components: { Login }
