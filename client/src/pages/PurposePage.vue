@@ -1,7 +1,11 @@
 <template>
   <div class="PurposePage container-fluid ">
+    <div class="pt-2 col-12 d-flex justify-content-end bg-header">
+
+      <Login />
+    </div>
     <div class="row py-4 bg-top align-items-center ">
-      <div class="col-12  ">
+      <div class="col-12 ">
         <h1 class=" text-center radley-title">
           What would you like to get done today?
         </h1>
@@ -28,6 +32,7 @@
       </RouterLink>
     </section>
 
+
   </div>
 </template>
 
@@ -35,21 +40,30 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
+import { accountService } from '../services/AccountService';
+import Login from '../components/Login.vue';
 export default {
   setup() {
-    return {}
-  }
+    return {
+      account: computed(() => AppState.account),
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin });
+      }
+    };
+  },
+  components: { Login }
 };
 </script>
 
 
 <style lang="scss" scoped>
 .bg-header {
-  height: 5vh
+  height: 5vh;
+  background-color: #F4FDFF;
 }
 
 .bg-top {
-  height: 45vh;
+  height: 40vh;
   background-color: #F4FDFF;
 }
 

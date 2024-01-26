@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid bg">
-    <div class="row   p-2">
+    <div class="row p-2">
 
 
       <div class="col-7 d-flex justify-content-start">
