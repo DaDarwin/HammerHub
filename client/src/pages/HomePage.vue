@@ -33,8 +33,8 @@
         </div>
         <div class="d-flex justify-content-center">
           <!-- REVIEW why are these not adjusting to col-12 on mobile? -->
-          <RouterLink class="col-12 col-md-4 selectable card  mx-3 mb-2" :to="{ name: 'Purpose Page' }">
-            <div class="col-12 col-md-4 selectable card  mx-3 mb-2">
+          <RouterLink :to="{ name: 'Purpose Page' }">
+            <div class="col-12 col-md-4 selectable card mx-3 mb-2">
               <h2 class="text-center radley-card mt-5 mb-0">I'm a worker</h2>
               <hr class="m-3 green">
               <p class="m-3 text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
