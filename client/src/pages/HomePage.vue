@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid bg">
-    <div class="row   p-2">
+    <div class="row p-2">
 
 
       <div class="col-7 d-flex justify-content-start">
@@ -13,13 +13,13 @@
 
     </div>
     <!-- Top text -->
-    <section class="row text-center">
+    <section class="row ">
       <div class="col-12">
-        <h1 class="radley mb-4">
+        <h1 class="radley mb-4 text-center">
           Welcome to HammerHub
         </h1>
-        <p class="fs-3 carlito">
-          A place for all your construction projects to be <br>displayed so the right people can find you for hire.
+        <p class="fs-3 text-center carlito">
+          A place for all your construction projects to be displayed so the right people can find you for hire.
         </p>
       </div>
     </section>
@@ -30,23 +30,21 @@
         </h1>
       </div>
     </section>
-    <section class="row align-items-center">
+    <section class="row justify-content-center ">
 
-
-      <!-- REVIEW why are these not adjusting to col-12 on mobile? -->
-      <RouterLink :to="{ name: 'Purpose Page' }">
-        <div class="col-12 col-md-4 selectable card mx-3 mb-2">
-          <h2 class="text-center radley-card mt-5 mb-0">I'm a worker</h2>
+      <RouterLink :to="{ name: 'Purpose Page' }" class="d-flex justify-content-center col-12 col-md-4 mb-2 ">
+        <div class=" selectable card ">
+          <h2 class="text-center radley-card mt-5 ">I'm a worker</h2>
           <hr class="m-3 green">
-          <p class="m-3 text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
+          <p class=" text-center carlito">Someone looking to make a profile of <br> projects for others to see</p>
         </div>
       </RouterLink>
 
-      <RouterLink :to="{ name: 'Search Page' }">
-        <div class="col-12 col-md-4 selectable card mx-3 mb-2">
-          <h2 class="text-center radley-card mt-5 mb-0">I'm a looker</h2>
+      <RouterLink :to="{ name: 'Search Page' }" class="col-12 col-md-4 d-flex justify-content-center mb-2">
+        <div class=" selectable card  ">
+          <h2 class="text-center radley-card mt-5 ">I'm a looker</h2>
           <hr class="m-3 green">
-          <p class="m-3 text-center carlito">Someone looking for projects that <br>match my desire for hire</p>
+          <p class=" text-center carlito">Someone looking for projects that <br>match my desire for hire</p>
         </div>
       </RouterLink>
 

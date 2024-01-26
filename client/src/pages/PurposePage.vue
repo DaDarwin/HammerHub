@@ -1,32 +1,37 @@
 <template>
-  <div class="PurposePage container-fluid bg ">
-    <div class="row pt-4  ">
-      <div class="col-12 justify-content-end ">
+  <div class="PurposePage container-fluid ">
+    <div class="pt-2 col-12 d-flex justify-content-end bg-header">
+
+      <Login />
+    </div>
+    <div class="row py-4 bg-top align-items-center ">
+      <div class="col-12 ">
         <h1 class=" text-center radley-title">
           What would you like to get done today?
         </h1>
       </div>
     </div>
-    <div class="row  ">
+    <section class="row bg-bottom justify-content-center ">
 
-      <RouterLink class="col-12 col-md-4 mx-2 selectable card justify-content-center  " :to="{ name: 'Business Page' }">
-        <div>
-          <h2 class="text-center radley-card mt-3 mb-0">Learn about business</h2>
-          <hr class="m-3">
+      <RouterLink class="col-12 col-md-4  " :to="{ name: 'Business Page' }">
+        <div class="selectable card mb-2">
+          <h2 class="text-center radley-card mt-3 ">Learn about business</h2>
+          <hr class="m-3 green">
           <p class="m-3 text-center carlito">Learn the steps you need to take to start and keep a successful business
           </p>
         </div>
       </RouterLink>
 
-      <RouterLink class="col-12 col-md-4 mx-2 selectable card" :to="{ name: 'Profile Page' }">
-        <div>
-          <h2 class="text-center radley-card mt-5 mb-0">Edit my profile</h2>
-          <hr class="m-3">
-          <p class="m-3 text-center carlito">Add to your profile description, link your social media profiles and add
+      <RouterLink class="col-12 col-md-4 justify-content-center d-flex " :to="{ name: 'Profile Page' }">
+        <div class="selectable card mb-2">
+          <h2 class="text-center radley-card mt-5">Edit my profile</h2>
+          <hr class="m-3 green">
+          <p class="m-2 text-center carlito">Add to your profile description, link your social media profiles and add
             your projects</p>
         </div>
       </RouterLink>
-    </div>
+    </section>
+
 
   </div>
 </template>
@@ -35,17 +40,35 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
+import { accountService } from '../services/AccountService';
+import Login from '../components/Login.vue';
 export default {
   setup() {
-    return {}
-  }
+    return {
+      account: computed(() => AppState.account),
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin });
+      }
+    };
+  },
+  components: { Login }
 };
 </script>
 
 
 <style lang="scss" scoped>
-.bg {
-  height: 100vh;
+.bg-header {
+  height: 5vh;
+  background-color: #F4FDFF;
+}
+
+.bg-top {
+  height: 40vh;
+  background-color: #F4FDFF;
+}
+
+.bg-bottom {
+  height: 55vh;
   background-color: #F4FDFF;
 }
 
@@ -63,6 +86,10 @@ export default {
 
 .carlito {
   font-family: 'Carlito', sans-serif;
+  color: #214E34
+}
+
+.green {
   color: #214E34
 }
 
