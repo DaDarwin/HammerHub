@@ -59,7 +59,7 @@ export class TradeController extends BaseController {
             next(error)
         }
     }
-    async getTradeById(req, res, next) {
+    async getTrade(req, res, next) {
         try {
             res.send(await tradeService.getTradeById(req.params.id))
         }
