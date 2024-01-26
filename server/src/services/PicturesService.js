@@ -3,6 +3,10 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { projectsService } from "./ProjectsService.js"
 
 class PicturesService {
+    async getAllPictures() {
+        const pictures = await dbContext.Pictures.find()
+        return pictures
+    }
 
     async deletePicture(pictureId, userId) {
         const pictureToDelete = await this.getPictureById(pictureId);

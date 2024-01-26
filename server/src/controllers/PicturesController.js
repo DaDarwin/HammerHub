@@ -6,9 +6,18 @@ export class PicturesController extends BaseController {
     constructor() {
         super('api/pictures')
         this.router
+            .get('', this.getAllPictures)
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createPicture)
             .delete('/:pictureId', this.deletePicture)
+    }
+    async getAllPictures(request, response, next) {
+        try {
+            const trades = await picturesService.getAllPictures()
+            response.send(trades)
+        } catch (error) {
+            next(error)
+        }
     }
 
     async createPicture(request, response, next) {
