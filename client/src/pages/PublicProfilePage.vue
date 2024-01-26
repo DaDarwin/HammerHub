@@ -10,6 +10,8 @@
         <p class="fs-2 tan carlito "><i><i class=" m-2 tan fs-1 mdi mdi-instagram"></i></i><i><i
               class="m-2 tan fs-1 mdi mdi-facebook"></i></i><i><i
               class="m-2 tan fs-1 mdi mdi-twitter"></i></i>@reallygreatsite</p>
+
+        <!-- REVIEW We could make these all in a component but the images would then have to be the same? -->
         <div class="d-flex tan">
           <p class="mx-3 ">SEE PROJECTS</p>
           <p class="mx-3 ">EMAIL</p>

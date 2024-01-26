@@ -23,15 +23,21 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/profilePage',
-    name: 'Profile Page',
-    component: loadPage('ProfilePage'),
+    path: '/publicProfilePage',
+    name: 'Public Profile Page',
+    component: loadPage('PublicProfilePage'),
     beforeEnter: authGuard
   },
   {
     path: '/purposePage',
     name: 'Purpose Page',
     component: loadPage('PurposePage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/privateProfilePage',
+    name: 'Private Profile Page',
+    component: loadPage('PrivateProfilePage'),
     beforeEnter: authGuard
   },
   {

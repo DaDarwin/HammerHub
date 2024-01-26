@@ -15,7 +15,7 @@
           <div class="list-group">
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
-                Manage Account
+                Manage Profile
               </div>
             </router-link>
 
