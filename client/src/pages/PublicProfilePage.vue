@@ -35,6 +35,8 @@
     </section>
 
   </div>
+  <!-- TODO Projects here with router to get there -->
+  {{ projects }}
 </template>
 
 
@@ -43,7 +45,9 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 export default {
   setup() {
-    return {}
+    return {
+      projects: computed(() => AppState.projects)
+    }
   }
 };
 </script>

@@ -4,6 +4,7 @@ export class Account {
     this.email = data.email
     this.phone = data.phone
     this.name = data.name
+    this.businessName = data.businessName
     this.picture = data.picture
     this.location = data.location
     this.instagram = data.instagram
