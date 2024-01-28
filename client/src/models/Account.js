@@ -14,6 +14,7 @@ export class Account {
     this.resume = data.resume
     this.userName = data.userName
     this.aboutMe = data.aboutMe
+    this.trade = data.trade
     // TODO add additional properties if needed
   }
 }

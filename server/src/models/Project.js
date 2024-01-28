@@ -7,7 +7,8 @@ export const ProjectSchema = new Schema({
   coverImg: { type: String, required: true, maxlength: 500 },
   description: { type: String, required: true, minlength: 20, maxlength: 1000 },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-  // tradeId: {type: Schema.Types.ObjectId, required: true, ref: 'Trade'}
+  tradeId: { type: Schema.Types.ObjectId, required: true, ref: 'Trade' },
+  trade: { type: String, enum: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'], required: true },
 },
   {
     timestamps: true,

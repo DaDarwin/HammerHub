@@ -7,5 +7,8 @@ export const AppState = reactive({
   account: {},
 
   /**@type {Project{}} */
-  projects: {}
+  projects: {},
+
+  /** @type {Trade{}} */
+  trades: {}
 })

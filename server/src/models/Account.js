@@ -15,7 +15,8 @@ export const AccountSchema = new Schema(
     twitter: { type: String, required: false, minlength: 2, maxlength: 500 },
     userName: { type: String, required: false, minlength: 2, maxlength: 30 },
     resume: { type: String, required: false },
-    testimonials: { type: String, required: false, minlength: 2, maxlength: 1000 }
+    testimonials: { type: String, required: false, minlength: 2, maxlength: 1000 },
+    trade: { type: String, enum: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'], required: true }
 
     // NOTE If you wish to add additional properties do so here
   },

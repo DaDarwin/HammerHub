@@ -36,6 +36,7 @@
 
   </div>
   <!-- TODO Projects here with router to get there -->
+  <ProjectCard :project="project" />
   {{ projects }}
 </template>
 
@@ -43,12 +44,15 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
+import ProjectCard from '../components/ProjectCard.vue';
+
 export default {
   setup() {
     return {
       projects: computed(() => AppState.projects)
-    }
-  }
+    };
+  },
+  components: { ProjectCard }
 };
 </script>
 

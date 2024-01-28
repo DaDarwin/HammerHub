@@ -13,23 +13,45 @@
       <form class="form-control" @submit.prevent="createProject()">
         <div>
           <label for="title">Title</label>
-          <input class="w-100 form-control" type="text" required maxlength="30">
+          <input v-model="projectData.title" class="w-100 form-control" type="text" required maxlength="30">
+        </div>
+        <div>
+          <label for="trade">Trade</label>
+          <select v-model="projectData.trade" name="trade" id="trade" class="form-control w-100">
+            <option value="" selected>please select a trade</option>
+            <option value="planning">planning</option>
+            <option value="foundation">foundation</option>
+            <option value="framing">framing</option>
+            <option value="electrical">electrical</option>
+            <option value="plumbing">plumbing</option>
+            <option value="siding">siding</option>
+            <option value="roofing">roofing</option>
+            <option value="drywall">drywall</option>
+            <option value="tile work">tile work</option>
+            <option value="concrete work">concrete work</option>
+            <option value="cabinetry">cabinetry</option>
+            <option value="landscaping">landscaping</option>
+            <option value="HVAC">landscaping</option>
+            <option value="windows">landscaping</option>
+            <option value="other">landscaping</option>
+          </select>
         </div>
         <div>
           <label for="coverImg">Cover Image</label>
-          <input class="w-100 form-control" type="text" required maxlength="500">
+          <input v-model="projectData.coverImg" class="w-100 form-control" type="text" required maxlength="500">
         </div>
         <div>
           <label for="description">Describe your project</label>
-          <textarea name="description" id="description" class="w-100 form-control" cols="30" rows="10" minlength="20"
-            maxlength="1000"></textarea>
+          <textarea v-model="projectData.description" name="description" id="description" class="w-100 form-control"
+            cols="30" rows="10" minlength="20" maxlength="1000"></textarea>
         </div>
-        <div>
-          <button class="btn btn-light" type="submit">Create</button>
+        <div class="text-end m-2">
+          <button class="btn btn-light border-dark" type="submit">Create</button>
         </div>
       </form>
     </section>
-
+    <!-- populate projects here -->
+    <!-- <ProjectCard :project="project" /> -->
   </div>
 </template>
 
@@ -41,6 +63,7 @@ import Login from '../components/Login.vue';
 import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
 import { projectsService } from '../services/ProjectsService'
+import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
   setup() {
@@ -49,11 +72,14 @@ export default {
       projectData.value = {}
     }
     return {
+      projectData,
       resetForm,
       projects: computed(() => AppState.projects),
       async createProject() {
         try {
+          console.log('trying to create project', projectData.value)
           await projectsService.createProject(projectData.value)
+
           Pop.success('project created')
           resetForm()
           console.log('creating project from page')
@@ -65,7 +91,7 @@ export default {
 
     }
   },
-  components: { Login }
+  components: { Login, ProjectCard }
 };
 </script>
 
