@@ -1,15 +1,15 @@
 
 
-export class Trade{
+export class Trade {
 
-    constructor(data){
-        
-        this.workType = data.workType
+    constructor(data) {
+
+        this.trade = data.trade
         this.extraInfo = data.extraInfo
-        
+
         this.isLicensed = data.isLicensed
         this.archived = data.archived
-        
+
         this.profileId = data.profileId
         this.profile = data.profile
 

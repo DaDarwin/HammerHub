@@ -45,10 +45,10 @@ class ProjectsService {
     // // type? filter.workType = type : ''
     // const unfilteredTrades = await dbContext.Trade.find(query).populate('projects')
     // logger.log('trades:', unfilteredTrades)
-    
+
     // // let projects = await dbContext.Projects.find({tradeId: unfilteredTrades.map( trade => trade.id)})
     // // logger.log('projects:', projects)
-    
+
     // // let filter2 = {}
     // // isLicensed ? filter2.projectId = projects.map(project => project._id) : ''
     // unfilteredTrades.projects.map(project => project._id)
@@ -72,7 +72,7 @@ class ProjectsService {
 
 
 
-}
+  }
 
   async getProjectById(projectId) {
     const project = await dbContext.Projects.findById(projectId).populate('creator', 'name picture')
@@ -86,12 +86,14 @@ class ProjectsService {
   async createProject(projectData) {
     const project = await dbContext.Projects.create(projectData)
     await project.populate('creator', 'name picture')
+    await project.populate('trade', 'tradeId')
     return project
   }
 
   async editProject(projectId, projectData) {
     const originalProject = await this.getProjectById(projectId)
     originalProject.title = projectData.title ? projectData.title : originalProject.title
+    originalProject.trade = projectData.trade ? projectData.trade : originalProject.trade
     originalProject.coverImg = projectData.coverImg ? projectData.coverImg : originalProject.coverImg
     originalProject.description = projectData.description ? projectData.description : originalProject.description
     await originalProject.save()
