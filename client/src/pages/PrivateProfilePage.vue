@@ -8,9 +8,42 @@
     </section>
     <section class="row">
       <div class="col-12 m-3 radley-title text-center ">
+        Create a Trade
+      </div>
+      <div class="col-12">
+        <form class="form-control">
+          <label for="trade">What are your trades?</label>
+          <select v-model="tradeData.trade" name="trade" id="trade" class="form-control" required>
+            <option value="" selected disabled>please select a trade</option>
+            <option class="" v-for="trade in tradeType" :value="trade">{{ trade }}</option>
+          </select>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              No
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              Yes
+            </label>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-12 m-3 radley-title text-center ">
         Create a Project
       </div>
       <form class="form-control" @submit.prevent="createProject()">
+        <div>
+          <label for="">What is the trade?</label>
+          v-model="TradeData.tradeId"
+          :value='tradeId'
+          v-for="trade in accountTrades" -- add to appstate
+          option: {trade.trade}
+        </div>
         <div>
           <label for="title">Title</label>
           <input v-model="projectData.title" class="w-100 form-control" type="text" required maxlength="30">
@@ -49,20 +82,36 @@ import ProjectCard from '../components/ProjectCard.vue'
 export default {
   setup() {
     const projectData = ref({})
-    async function resetForm() {
-      projectData.value = {}
+    const tradeData = ref({ trade: '' })
+    async function resetTradeForm() {
+      tradeData.value = { trade: '' }
+    }
+    async function resetProjectForm() {
+      projectData.value = ''
     }
     return {
+      tradeType: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
       projectData,
-      resetForm,
+      tradeData,
+      resetProjectForm,
+      resetTradeForm,
       projects: computed(() => AppState.projects),
+      trades: computed(() => AppState.trades),
+      async createTrade() {
+        try {
+          await tradeService.createTrade(tradeData.value)
+        } catch (error) {
+          Pop.error(error)
+        }
+      },
+
       async createProject() {
         try {
           console.log('trying to create project', projectData.value)
           await projectsService.createProject(projectData.value)
 
           Pop.success('project created')
-          resetForm()
+          resetProjectForm()
           console.log('creating project from page')
         } catch (error) {
           Pop.error(error)
