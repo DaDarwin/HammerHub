@@ -68,7 +68,7 @@ class ProjectsService {
 
     // return trades
 
-    return dbContext.Projects.find({$or:[{ description: {regex: search}}, {title: {regex: search}}]})
+    return dbContext.Projects.find({$or:[{ description: {$regex: search}}, {title: {$regex: search}}]})
 
 
 
