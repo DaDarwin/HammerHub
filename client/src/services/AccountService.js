@@ -16,7 +16,7 @@ class AccountService {
 
 
 
-
+  //REVIEW accountData is not coming through correctly 
   async updateAccount(accountData) {
     const response = await api.put('/account', accountData)
     console.log('editing account', response.data)

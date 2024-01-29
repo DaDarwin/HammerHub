@@ -12,19 +12,19 @@
     <form class=" row d-flex form-control" @submit.prevent="updateAccount()">
       <div class="col-6">
         <label for="name">Business Name</label>
-        <input class="form-control  " v-model="accountData.businessName" id="name" type="text">
+        <input class="form-control  " v-model="editable.businessName" id="name" type="text">
       </div>
       <div class="col-6">
         <label for="location">City, State</label>
-        <input v-model="accountData.location" class="form-control " type="text">
+        <input v-model="editable.location" class="form-control " type="text">
       </div>
       <div class="col-6">
         <label for="instagram">Instagram</label>
-        <input v-model="accountData.instagram" type="url" class="form-control">
+        <input v-model="editable.instagram" type="url" class="form-control">
       </div>
       <div class="col-6">
         <label for="facebook">Facebook</label>
-        <input v-model="accountData.facebook" type="url" class="form-control">
+        <input v-model="editable.facebook" type="url" class="form-control">
       </div>
       <div>
         <button class="btn btn-light text-dark border" type="submit">Edit Profile</button>
@@ -47,26 +47,27 @@ import { accountService } from '../services/AccountService';
 
 export default {
   setup() {
-    const accountData = ref({})
+    const editable = ref({})
     const account = computed(() => AppState.account)
-    async function resetForm() {
-      accountData.value = ''
-    }
-    // watch(account, () => {
-    //   accountData.value = { ...AppState.account };
-    // }, { immediate: true });
+    // async function resetForm() {
+    //   editable.value = ''
+    // }
+    watch(account, () => {
+      editable.value = { ...AppState.account };
+    }, { immediate: true });
 
     return {
-      accountData,
+      editable,
       account,
-      resetForm,
+      // resetForm,
       async updateAccount() {
         try {
-          await accountService.updateAccount(accountData.value)
-          console.log('getting account data', accountData.value)
+          const accountData = editable.value;
+          await accountService.updateAccount(accountData)
+          console.log('getting account data', accountData)
           //REVIEW accountData.value has correct info but the accountData in the service is not passing it all correctly
           Pop.success('Account updated successfully')
-          resetForm()
+          // resetForm()
         } catch (error) {
           Pop.error(error)
         }

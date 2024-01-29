@@ -15,27 +15,7 @@
           <label for="title">Title</label>
           <input v-model="projectData.title" class="w-100 form-control" type="text" required maxlength="30">
         </div>
-        <div>
-          <label for="trade">Trade</label>
-          <select v-model="projectData.trade" name="trade" id="trade" class="form-control w-100">
-            <option value="" selected>please select a trade</option>
-            <option value="planning">planning</option>
-            <option value="foundation">foundation</option>
-            <option value="framing">framing</option>
-            <option value="electrical">electrical</option>
-            <option value="plumbing">plumbing</option>
-            <option value="siding">siding</option>
-            <option value="roofing">roofing</option>
-            <option value="drywall">drywall</option>
-            <option value="tile work">tile work</option>
-            <option value="concrete work">concrete work</option>
-            <option value="cabinetry">cabinetry</option>
-            <option value="landscaping">landscaping</option>
-            <option value="HVAC">landscaping</option>
-            <option value="windows">landscaping</option>
-            <option value="other">landscaping</option>
-          </select>
-        </div>
+
         <div>
           <label for="coverImg">Cover Image</label>
           <input v-model="projectData.coverImg" class="w-100 form-control" type="text" required maxlength="500">
@@ -52,6 +32,7 @@
     </section>
     <!-- populate projects here -->
     <!-- <ProjectCard :project="project" /> -->
+
   </div>
 </template>
 
