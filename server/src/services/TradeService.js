@@ -2,15 +2,17 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 import { logger } from "../utils/Logger.js"
 
-class TradeService{
+// {extraInfo: {$regex:search}}
+class TradeService {
+
     async getTrades(query, licensePref) {
-        const filter = {$or: [ {workType: {$regex:query}}, {extraInfo: {$regex:query}} ]}
-        logger.log(filter)
-        licensePref? filter.isLicensed = true : ''
+        const filter = { $or: [{ workType: { $regex: query } }, { extraInfo: { $regex: query } }] }
+        // logger.log(filter)
+        licensePref ? filter.isLicensed = true : ''
         return await dbContext.Trade.find(filter)
     }
-    
-    
+
+
     // async getTradeProjects(id) {
     //     return await dbContext.Projects.find({tradeId: id})
     // }
@@ -22,7 +24,7 @@ class TradeService{
         }
         trade.archived = !trade.archived
         await trade.save()
-        return `Trade ${trade.workType} deleted`
+        return `Trade ${trade.trade} deleted`
     }
     async editTrade(id, payload, userId) {
         const trade = await this.getTradeById(id)

@@ -10,7 +10,7 @@ export class ProjectsController extends BaseController {
     this.router
       .get(`/:projectId`, this.getProjectById)
       .get(`/:albumId/pictures`, this.getPicturesInProject)
-      .get('', this.getProjects)
+      .get('', this.search)
       .get(`/:projectId/pictures`, this.getPicturesInProject)
 
       .use(Auth0Provider.getAuthorizedUserInfo)
@@ -21,14 +21,23 @@ export class ProjectsController extends BaseController {
 
 
   }
-  async getProjects(req, res, next) {
+  // async getProjects(req, res, next) {
+  //   try {
+  //     res.send(await projectsService.getProjects(req.query.search, req.query.isLicensed))
+  //   } 
+  //   catch (error) {
+  //     next(error)
+  //   }
+  // }
+
+  async search(req, res, next) {
     try {
-      res.send(await projectsService.getProjects(req.query.search, req.query.isLicensed))
+        res.send(await projectsService.search(new RegExp(req.query.search, 'ig')))
     } 
     catch (error) {
-      next(error)
+        next(error)
     }
-  }
+}
 
   async getProjectById(request, response, next) {
     try {
