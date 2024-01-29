@@ -18,10 +18,12 @@ class AccountService {
 
   //REVIEW accountData is not coming through correctly 
   async updateAccount(accountData) {
+    logger.log('Before Api:', accountData)
     const response = await api.put('/account', accountData)
+    logger.log('After api', response.data)
     console.log('editing account', response.data)
-    const newAccount = new Account(response.data)
-    AppState.account = newAccount
+    // const newAccount = new Account(response.data)
+    // AppState.account = newAccount
   }
 }
 

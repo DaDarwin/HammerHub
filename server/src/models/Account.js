@@ -7,16 +7,15 @@ export const AccountSchema = new Schema(
     email: { type: String, lowercase: true, unique: true, minlength: 2, maxlength: 40 },
     phone: { type: String, unique: true, minlength: 7, maxlength: 15 },
     name: { type: String, required: true, minlength: 2, maxlength: 50 },
-    picture: { type: String, required: true },
+    picture: { type: String },
     location: { type: String, required: true, minlength: 2, maxlength: 500 },
-    aboutMe: { type: String, required: true, minlength: 2, maxlength: 2000 },
+    aboutMe: { type: String, minlength: 2, maxlength: 2000 },
     instagram: { type: String, required: false, minlength: 2, maxlength: 500 },
     facebook: { type: String, required: false, minlength: 2, maxlength: 500 },
     twitter: { type: String, required: false, minlength: 2, maxlength: 500 },
     userName: { type: String, required: false, minlength: 2, maxlength: 30 },
     resume: { type: String, required: false },
     testimonials: { type: String, required: false, minlength: 2, maxlength: 1000 },
-    trade: { type: String, enum: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'], required: true }
 
     // NOTE If you wish to add additional properties do so here
   },

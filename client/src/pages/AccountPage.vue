@@ -44,6 +44,7 @@ import { AppState } from '../AppState';
 import { ref, watch } from 'vue';
 import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
+import { logger } from '../utils/Logger';
 
 export default {
   setup() {
@@ -63,6 +64,7 @@ export default {
       async updateAccount() {
         try {
           const accountData = editable.value;
+          logger.log('Before Service:', accountData)
           await accountService.updateAccount(accountData)
           console.log('getting account data', accountData)
           //REVIEW accountData.value has correct info but the accountData in the service is not passing it all correctly
