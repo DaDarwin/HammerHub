@@ -67,7 +67,6 @@ export default {
           logger.log('Before Service:', accountData)
           await accountService.updateAccount(accountData)
           console.log('getting account data', accountData)
-          //REVIEW accountData.value has correct info but the accountData in the service is not passing it all correctly
           Pop.success('Account updated successfully')
           // resetForm()
         } catch (error) {

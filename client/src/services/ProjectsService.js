@@ -8,11 +8,7 @@ class ProjectsService {
     const response = await api.post('api/projects', projectData)
     console.log('getting project', response.data)
     const newProject = new Project(response.data)
-    console.log('new project', newProject)
-    //FIXME appstate.push is not a function? 
-    //FIXME trade is null in response.
-    AppState.projects.push(newProject)
-    // AppState.projects.push(new Project(response.data))
+    AppState.projects = newProject
   }
 
 }
