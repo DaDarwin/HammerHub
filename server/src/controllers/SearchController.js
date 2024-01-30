@@ -1,17 +1,17 @@
 import { projectsService } from "../services/ProjectsService.js";
-import { tradeService } from "../services/TradeService.js";
+
 import BaseController from "../utils/BaseController.js";
 
 
 
 
-export class SearchController extends BaseController{
+export class SearchController extends BaseController {
 
 
-    constructor(){
+    constructor() {
         super('api/search')
         this.router
-        .get('', this.search)
+        // .get('', this.search)
     }
-    
+
 }
