@@ -8,26 +8,30 @@
     </section>
     <section class="row">
       <div class="col-12 m-3 radley-title text-center ">
-        Create a Trade
+        Tell us what trades you perform
       </div>
       <div class="col-12">
-        <form class="form-control">
+        <form class="form-control" @submit.prevent="createTrade()">
           <label for="trade">What are your trades?</label>
           <select v-model="tradeData.trade" name="trade" id="trade" class="form-control" required>
             <option value="" selected disabled>please select a trade</option>
             <option class="" v-for="trade in tradeType" :value="trade">{{ trade }}</option>
           </select>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
+            <input v-model="tradeData.isLicensed" class="form-check-input" type="radio" name="flexRadioDefault"
+              id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
               No
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-            <label class="form-check-label" for="flexCheckChecked">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
               Yes
             </label>
+          </div>
+          <div>
+            <button class="form-control btn btn-light border-dark" type="submit">Submit</button>
           </div>
         </form>
       </div>
@@ -78,6 +82,7 @@ import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
 import { projectsService } from '../services/ProjectsService'
 import ProjectCard from '../components/ProjectCard.vue'
+import { tradesService } from '../services/TradesService'
 
 export default {
   setup() {
@@ -99,7 +104,8 @@ export default {
       trades: computed(() => AppState.trades),
       async createTrade() {
         try {
-          await tradeService.createTrade(tradeData.value)
+          await tradesService.createTrade(tradeData.value)
+          Pop.success('Trade Created')
         } catch (error) {
           Pop.error(error)
         }
