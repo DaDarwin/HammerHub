@@ -12,14 +12,14 @@
       <div class="col-12 m-3 radley-title text-center ">
         Create a Project
       </div>
-      <form class="form-control" @submit.prevent="createProject()">
-        <label for="">What trade is this project for?</label>
-        <select v-model="projectData.tradeType" name="trade" id="trade" class="form-control" required>
-          <option value="" selected>select project trade</option>
-          <option class="" v-for="trade in tradeType" :value="projectData.trade">{{ trade }}
-          </option>
-        </select>
 
+      <form class="form-control" @submit.prevent="createProject()">
+        <label for="car-engine">What trade does this project fall under?</label>
+        <select v-model="projectData.trade" name="car-engine" id="car-engine" class="form-control" required>
+
+          <option value="" disabled selected>please select a trade</option>
+          <option class="" v-for="tradeType in tradeTypes" :value="tradeType">{{ tradeType }}</option>
+        </select>
         <div>
           <label for="title">Title</label>
           <input v-model="projectData.title" class="w-100 form-control" type="text" required maxlength="30">
@@ -58,14 +58,14 @@ import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
   setup() {
-    const projectData = ref({})
+    const projectData = ref({ trade: '' })
 
 
     async function resetProjectForm() {
-      projectData.value = ''
+      projectData.value = { trade: '' }
     }
     return {
-      tradeType: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
+      tradeTypes: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
       projectData,
       resetProjectForm,
       accountTrades: computed(() => AppState.accountTrades),
