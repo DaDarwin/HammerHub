@@ -1,7 +1,12 @@
 <template>
   <div class="PrivateProfilePage container-fluid bg">
     <section class="row">
-      <div class="pt-2 col-12 d-flex justify-content-end">
+      <div class="col-7 d-flex justify-content-start">
+        <RouterLink :to="{ name: 'Home' }">
+          <img class=" hammer mb-2 img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        </RouterLink>
+      </div>
+      <div class="col-5 d-flex justify-content-end">
 
         <Login />
       </div>
@@ -9,7 +14,7 @@
 
 
     <section class="row">
-      <div class="col-12 m-3 radley-title text-center ">
+      <div class="col-12 m-3 radley-title  ">
         Create a Project
       </div>
 
@@ -41,7 +46,7 @@
     </section>
 
     <!-- projects go here -->
-    <div class="col-12 m-3 radley-title text-center ">
+    <div class="col-12 m-3 radley-title">
       My Projects
     </div>
     <div class="row">
@@ -61,6 +66,7 @@ import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
 import { projectsService } from '../services/ProjectsService'
 import ProjectCard from '../components/ProjectCard.vue'
+import { RouterLink } from 'vue-router';
 
 
 export default {
@@ -111,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
-  height: 100vh;
+  // height: 100vh;
   background-color: #F4FDFF;
 }
 
@@ -119,5 +125,10 @@ export default {
   font-family: 'Radley', serif;
   font-size: 40px;
   color: #214E34
+}
+
+.hammer {
+  height: 100px;
+  width: 100px
 }
 </style>
