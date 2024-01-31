@@ -3,9 +3,9 @@ import { dbContext } from '../db/DbContext.js'
 // IMPORTANT profiles should not be updated or modified in any way here. Use the AccountService
 
 class ProfileService {
-  async getTrades(userId) {
-    return await dbContext.Trade.find({profileId: userId})
-  }
+  // async getTrades(userId) {
+  //   return await dbContext.Trade.find({profileId: userId})
+  // } no longer need this because we've removed trades
   /**
     * Returns a user profile from its id
     * @param {string} id
