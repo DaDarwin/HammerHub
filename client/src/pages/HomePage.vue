@@ -4,7 +4,9 @@
 
 
       <div class="col-7 d-flex justify-content-start">
-        <img class=" hammer mb-2 img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        <RouterLink :to="{ name: 'Home Page' }">
+          <img class=" hammer mb-2 img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        </RouterLink>
       </div>
       <div class="col-5 d-flex justify-content-end">
 
