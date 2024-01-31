@@ -1,10 +1,17 @@
 <template>
-  <div class="PurposePage container-fluid ">
-    <div class="pt-2 col-12 d-flex justify-content-end bg-header">
+  <div class="PurposePage container-fluid bg ">
+    <section class="row">
+      <div class="col-7 d-flex justify-content-start">
+        <RouterLink :to="{ name: 'Home' }">
+          <img class=" hammer mb-2 img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        </RouterLink>
+      </div>
+      <div class="col-5 d-flex justify-content-end">
 
-      <Login />
-    </div>
-    <div class="row py-4 bg-top align-items-center ">
+        <Login />
+      </div>
+    </section>
+    <div class="row py-4 align-items-center ">
       <div class="col-12 ">
         <h1 class=" text-center radley-title">
           What would you like to get done today?
@@ -42,6 +49,9 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 import { accountService } from '../services/AccountService';
 import Login from '../components/Login.vue';
+import { RouterLink } from 'vue-router';
+
+
 export default {
   setup() {
     return {
@@ -58,10 +68,11 @@ export default {
   background-color: #F4FDFF;
 }
 
-.bg-top {
-  height: 40vh;
+.bg {
+  height: 100vh;
   background-color: #F4FDFF;
 }
+
 
 .bg-bottom {
   height: 55vh;
@@ -87,6 +98,11 @@ export default {
 
 .green {
   color: #214E34
+}
+
+.hammer {
+  height: 100px;
+  width: 100px
 }
 
 .card {

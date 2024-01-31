@@ -68,7 +68,7 @@ class ProjectsService {
 
     // return trades
 
-    return dbContext.Projects.find({$or:[{ description: {$regex: search}}, {title: {$regex: search}}]})
+    return dbContext.Projects.find({ $or: [{ description: { $regex: search } }, { title: { $regex: search } }] })
 
 
 
@@ -86,7 +86,6 @@ class ProjectsService {
   async createProject(projectData) {
     const project = await dbContext.Projects.create(projectData)
     await project.populate('creator', 'name picture')
-    await project.populate('trade', 'tradeId')
     return project
   }
 

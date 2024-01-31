@@ -9,7 +9,7 @@ export class ProjectsController extends BaseController {
     super('api/projects')
     this.router
       .get(`/:projectId`, this.getProjectById)
-      .get(`/:albumId/pictures`, this.getPicturesInProject)
+      .get(`/:projectId/pictures`, this.getPicturesInProject)
       .get('', this.search)
       .get(`/:projectId/pictures`, this.getPicturesInProject)
 
@@ -32,12 +32,12 @@ export class ProjectsController extends BaseController {
 
   async search(req, res, next) {
     try {
-        res.send(await projectsService.search(new RegExp(req.query.search, 'ig')))
-    } 
-    catch (error) {
-        next(error)
+      res.send(await projectsService.search(new RegExp(req.query.search, 'ig')))
     }
-}
+    catch (error) {
+      next(error)
+    }
+  }
 
   async getProjectById(request, response, next) {
     try {

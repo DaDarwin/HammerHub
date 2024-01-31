@@ -13,6 +13,7 @@ export const AccountSchema = new Schema(
     instagram: { type: String, required: false, minlength: 2, maxlength: 500 },
     facebook: { type: String, required: false, minlength: 2, maxlength: 500 },
     twitter: { type: String, required: false, minlength: 2, maxlength: 500 },
+    linkedin: { type: String, required: false, minlength: 2, maxlength: 500 },
     userName: { type: String, required: false, minlength: 2, maxlength: 30 },
     resume: { type: String, required: false },
     testimonials: { type: String, required: false, minlength: 2, maxlength: 1000 },

@@ -1,53 +1,30 @@
 <template>
   <div class="PrivateProfilePage container-fluid bg">
     <section class="row">
-      <div class="pt-2 col-12 d-flex justify-content-end">
+      <div class="col-7 d-flex justify-content-start">
+        <RouterLink :to="{ name: 'Home' }">
+          <img class=" hammer mb-2 img-fluid" src="../assets/img/hammer.png" alt="cartoon hammer">
+        </RouterLink>
+      </div>
+      <div class="col-5 d-flex justify-content-end">
 
         <Login />
       </div>
     </section>
+
+
     <section class="row">
-      <div class="col-12 m-3 radley-title text-center ">
-        Tell us what trades you perform
-      </div>
-      <div class="col-12">
-        <form class="form-control" @submit.prevent="createTrade()">
-          <label for="trade">What are your trades?</label>
-          <select v-model="tradeData.trade" name="trade" id="trade" class="form-control" required>
-            <option value="" selected disabled>please select a trade</option>
-            <option class="" v-for="trade in tradeType" :value="trade">{{ trade }}</option>
-          </select>
-          <div class="form-check">
-            <input v-model="tradeData.isLicensed" class="form-check-input" type="radio" name="flexRadioDefault"
-              id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              No
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Yes
-            </label>
-          </div>
-          <div>
-            <button class="form-control btn btn-light border-dark" type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </section>
-    <section class="row">
-      <div class="col-12 m-3 radley-title text-center ">
+      <div class="col-12 m-3 radley-title  ">
         Create a Project
       </div>
+
       <form class="form-control" @submit.prevent="createProject()">
-        <div>
-          <label for="">What is the trade?</label>
-          v-model="TradeData.tradeId"
-          :value='tradeId'
-          v-for="trade in accountTrades" -- add to appstate
-          option: {trade.trade}
-        </div>
+        <label for="car-engine">What trade does this project fall under?</label>
+        <select v-model="projectData.trade" name="car-engine" id="car-engine" class="form-control" required>
+
+          <option value="" disabled selected>please select a trade</option>
+          <option class="" v-for="tradeType in tradeTypes" :value="tradeType">{{ tradeType }}</option>
+        </select>
         <div>
           <label for="title">Title</label>
           <input v-model="projectData.title" class="w-100 form-control" type="text" required maxlength="30">
@@ -67,9 +44,16 @@
         </div>
       </form>
     </section>
-    <!-- populate projects here -->
-    <!-- <ProjectCard :project="project" /> -->
 
+    <!-- projects go here -->
+    <div class="col-12 m-3 radley-title">
+      My Projects
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-4 " v-for="project in projects">
+        <ProjectCard :project="project" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -82,34 +66,33 @@ import Pop from '../utils/Pop';
 import { accountService } from '../services/AccountService';
 import { projectsService } from '../services/ProjectsService'
 import ProjectCard from '../components/ProjectCard.vue'
-import { tradesService } from '../services/TradesService'
+import { RouterLink } from 'vue-router';
+
 
 export default {
   setup() {
-    const projectData = ref({})
-    const tradeData = ref({ trade: '' })
-    async function resetTradeForm() {
-      tradeData.value = { trade: '' }
+    async function getAccountProjects() {
+      try {
+        await projectsService.getAccountProjects()
+      } catch (error) {
+        Pop.error(error)
+      }
     }
+    onMounted(() => {
+      getAccountProjects()
+    })
+    const projectData = ref({ trade: '' })
+
+
     async function resetProjectForm() {
-      projectData.value = ''
+      projectData.value = { trade: '' }
     }
     return {
-      tradeType: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
+      getAccountProjects,
+      tradeTypes: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
       projectData,
-      tradeData,
       resetProjectForm,
-      resetTradeForm,
       projects: computed(() => AppState.projects),
-      trades: computed(() => AppState.trades),
-      async createTrade() {
-        try {
-          await tradesService.createTrade(tradeData.value)
-          Pop.success('Trade Created')
-        } catch (error) {
-          Pop.error(error)
-        }
-      },
 
       async createProject() {
         try {
@@ -134,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg {
-  height: 100vh;
+  // height: 100vh;
   background-color: #F4FDFF;
 }
 
@@ -142,5 +125,10 @@ export default {
   font-family: 'Radley', serif;
   font-size: 40px;
   color: #214E34
+}
+
+.hammer {
+  height: 100px;
+  width: 100px
 }
 </style>
