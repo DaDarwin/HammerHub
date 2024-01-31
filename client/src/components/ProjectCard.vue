@@ -1,9 +1,10 @@
 <template>
   <div class="ProjectCard card border-dark m-3">
-    <div>
+    <div class="text-center fs-3">
       {{ project.title }}
     </div>
     <img :src="project.coverImg" :alt="coverImg">
+    <p class="p-2 text-center">{{project.description}}</p>
   </div>
 </template>
 
@@ -16,11 +17,19 @@ export default {
   props: { project: { type: Project, required: true } },
   setup() {
     return {
-      projects: computed(() => AppState.accountProjects)
     }
   }
 };
 </script>
 
 
-<style lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+
+  img{
+    height: 30vh;
+    object-fit: cover;
+    object-position: center;
+  }
+
+</style>
