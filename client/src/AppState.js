@@ -10,6 +10,8 @@ export const AppState = reactive({
   /**@type {Project[]} */
   projects: [],
 
-  /**@type {Project{}} */
-  activeProject: {}
+  /**@type {Project} */
+  activeProject: null,
+
+
 })

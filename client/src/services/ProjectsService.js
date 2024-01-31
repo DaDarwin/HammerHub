@@ -9,6 +9,14 @@ class ProjectsService {
     console.log('getting project', response.data)
     const newProject = new Project(response.data)
     AppState.projects = newProject
+
+  }
+
+  async getAccountProjects() {
+    const response = await api.get('api/projects')
+    console.log('getting account projects', response.data)
+    AppState.projects = response.data.map(newProject => new Project(newProject))
+
   }
 
 }

@@ -39,9 +39,16 @@
         </div>
       </form>
     </section>
-    <!-- populate projects here -->
-    <!-- <ProjectCard :project="project" /> -->
-    {{ projects }}
+
+    <!-- projects go here -->
+    <div class="col-12 m-3 radley-title text-center ">
+      My Projects
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-4 " v-for="project in projects">
+        <ProjectCard :project="project" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,6 +65,16 @@ import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
   setup() {
+    async function getAccountProjects() {
+      try {
+        await projectsService.getAccountProjects()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
+    onMounted(() => {
+      getAccountProjects()
+    })
     const projectData = ref({ trade: '' })
 
 
@@ -65,12 +82,11 @@ export default {
       projectData.value = { trade: '' }
     }
     return {
+      getAccountProjects,
       tradeTypes: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
       projectData,
       resetProjectForm,
-      accountTrades: computed(() => AppState.accountTrades),
       projects: computed(() => AppState.projects),
-
 
       async createProject() {
         try {
