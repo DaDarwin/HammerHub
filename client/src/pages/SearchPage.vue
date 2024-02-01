@@ -20,7 +20,7 @@
 
       <div v-if="projects.length" class="row">
 
-        <div v-for="project in profile.projects" class="col-12 col-md-4">
+        <div v-for="project in projects" class="col-12 col-md-4">
               
           <ProjectCard :project="project"/>
           
