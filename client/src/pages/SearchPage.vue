@@ -22,7 +22,9 @@
 
         <div v-for="project in projects" class="col-12 col-md-4">
               
-          <ProjectCard :project="project"/>
+          <ProjectCard :project="project" :key="project.id"/>            
+            
+          <ProfileCard :profile="project.creator" :key="project.creator.id"/>
           
         </div>
 

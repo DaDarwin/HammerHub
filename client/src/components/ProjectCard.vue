@@ -5,6 +5,9 @@
     </div>
     <img :src="project.coverImg" :alt="coverImg">
     <p class="p-2 text-center">{{project.description}}</p>
+    <slot>
+      
+    </slot>
   </div>
 </template>
 
