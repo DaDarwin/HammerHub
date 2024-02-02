@@ -19,7 +19,7 @@ import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
 import { Account } from '../models/Account';
 export default {
-    props: { profile: { type: Account, required: true } },
+    props: { profile: {required: true } },
 
     setup() {
         return {}

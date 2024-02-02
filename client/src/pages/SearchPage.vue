@@ -41,9 +41,7 @@
         <div v-for="project in projects" class="col-12 col-md-4">
               
           <ProjectCard :project="project" :key="project.id"/>            
-            
-          <ProfileCard :profile="project.creator" :key="project.creator.id"/>
-          
+                      
         </div>
 
       </div>
@@ -51,9 +49,7 @@
       <div v-if="!projects.length" v-for="profile in profiles" class="p-0 mx-2">
         
          <div v-if="profile.projects.length" class="col-12 mb-4 p-2 card rounded">
-          
-          <ProfileCard :profile="profile"/>
-          
+                    
           <div class="row">
             
             <div v-for="project in profile.projects" class="col-12 col-md-4">
