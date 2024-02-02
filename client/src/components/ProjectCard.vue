@@ -26,7 +26,6 @@ export default {
     props: { project: { type: Project, required: true } },
     setup() {
         return {
-            account: computed(() => AppState.account)
         };
     },
     components: { ProfileCard }
