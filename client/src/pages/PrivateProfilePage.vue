@@ -50,7 +50,7 @@
       My Projects
     </div>
     <div class="row">
-      <div class="col-12 col-md-3 card  m-2" v-for="project in projects">
+      <div class="col-12 col-md-4 " v-for="project in projects">
         <ProjectCard :project="project" />
       </div>
     </div>
