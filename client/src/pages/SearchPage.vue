@@ -14,11 +14,11 @@
 
         <div class="col-12 col-md-4  my-2 rounded-pill">
           
-          <form @submit.prevent="getSearch()" class="d-flex border border-dark rounded-pill overflow-hidden p-0 searchbar">
+          <form @submit.prevent="getSearch()" class="d-flex border border-dark rounded-pill overflow-hidden p-0 searchbar bg-white">
             
             <input class="w-90 form-control border-0 rounded-0 p-0 searchbar ps-1" v-model="query.search" type="text" placeholder="Search">
             
-            <button class="btn btn-outline-dark border-top-0 border-bottom-0 border-end-0 rounded-0 w-10"><i class="mdi mdi-magnify"></i></button>
+            <button class="btn btn-outline-dark border-top-0 border-bottom-0 border-end-0 rounded-0 w-10 bg-primary magnify"><i class="mdi mdi-magnify text-light"></i></button>
             
           </form>
         </div>
@@ -29,7 +29,7 @@
 
             <span v-for="worktype in worktypes" class="m-1">
               <label :for="worktype">{{worktype}}</label>
-              <input class="form-control" :id="worktype" type="checkbox">
+              <input class="" :id="worktype" type="checkbox">
             </span>
             
           </form>
@@ -46,23 +46,7 @@
 
       </div>
 
-      <div v-if="!projects.length" v-for="profile in profiles" class="p-0 mx-2">
-        
-         <div v-if="profile.projects.length" class="col-12 mb-4 p-2 card rounded">
-                    
-          <div class="row">
-            
-            <div v-for="project in profile.projects" class="col-12 col-md-4">
-              
-              <ProjectCard :project="project"/>
-              
-            </div>
-            
-          </div>
-        
-        </div>
 
-      </div>
 
 
   </div>
@@ -128,15 +112,22 @@ export default {
 }
 
 .w-90{
-  width: 90%;
+  width: 85%;
 }
 
 .w-10{
-  width: 10%;
+  width: 15%;
 }
 
 .searchbar :focus{
   box-shadow: none !important;
+}
+
+.magnify:hover{
+  i{
+    text-shadow: 5px, #F4FDFF !important;
+    color: black !important;
+  }
 }
 
 </style>

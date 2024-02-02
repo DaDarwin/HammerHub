@@ -1,11 +1,11 @@
 <template>
     <router-link to="">
 
-        <span class="d-flex align-items-center rounded-pill border border-dark">
+        <span class="d-flex flex-column align-items-baseline rounded-pill">
 
             <img :src="profile.picture" alt="" class="profile-picture border  border-dark ">
 
-            <span class="m-2 text-dark">{{ profile.name }}</span>
+            <div class="m-2 text-dark">{{ profile.name }}</div>
 
 
         </span>
