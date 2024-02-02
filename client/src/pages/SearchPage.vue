@@ -1,10 +1,16 @@
 <template>
   <div class="container-fluid">
 
+      <div class="row m-2">
 
-    <section class="row m-2">
 
-      <div class="card rounded mb-2 col-12">
+
+      </div>
+
+
+
+
+      <div class="card rounded mb-2 mx-2 row">
 
         <div class="col-12 col-md-4  my-2 rounded-pill">
           
@@ -16,9 +22,21 @@
             
           </form>
         </div>
+
+        <div class="col-12 col-md-8 d-flex justify-content-between">
+
+          <form class="d-flex">
+
+            <span v-for="worktype in worktypes" class="m-1">
+              <label :for="worktype">{{worktype}}</label>
+              <input class="form-control" :id="worktype" type="checkbox">
+            </span>
+            
+          </form>
+        </div>
       </div>
 
-      <div v-if="projects.length" class="row">
+      <div v-if="projects.length" class="row mx-2">
 
         <div v-for="project in projects" class="col-12 col-md-4">
               
@@ -30,9 +48,9 @@
 
       </div>
 
-      <div v-if="!projects.length" v-for="profile in profiles" class="p-0">
+      <div v-if="!projects.length" v-for="profile in profiles" class="p-0 mx-2">
         
-        <div v-if="profile.projects.length" class="col-12 mb-4 p-2 card rounded">
+         <div v-if="profile.projects.length" class="col-12 mb-4 p-2 card rounded">
           
           <ProfileCard :profile="profile"/>
           
@@ -50,7 +68,6 @@
 
       </div>
 
-    </section>
 
   </div>
 </template>
@@ -64,7 +81,7 @@ import ProjectCard from '../components/ProjectCard.vue';
 import ProfileCard from '../components/ProfileCard.vue'
 import Pop from '../utils/Pop';
 export default {
-    setup() {
+  setup() {
         onMounted(() => {
             getProfiles();
         });
@@ -83,6 +100,7 @@ export default {
             profiles: computed(() => AppState.profiles),
             projects: computed(()=> AppState.projects),
             query,
+            worktypes:['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
 
             async getSearch(){
               try {
