@@ -62,7 +62,7 @@ export class ProjectsController extends BaseController {
       const projectData = request.body
       const userId = request.userInfo.id
       projectData.creatorId = userId
-      const project = await projectsService.createProject(projectData)
+      const project = await (await projectsService.createProject(projectData))
       response.send(project)
     } catch (error) {
       next(error)
