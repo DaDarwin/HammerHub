@@ -1,5 +1,5 @@
 <template>
-  <div class="row border border-primary m-3 rounded">
+  <div class="row border border-primary m-3 rounded bg-primary text-light p-1">
     <!-- <div>
       <img :src="project.creator.picture" alt="profile-picture">
     </div> -->
@@ -10,7 +10,7 @@
         {{ project.title }}
       </h1>
     </div>
-    <img class="p-0 rounded-top" :src="project.coverImg" alt="coverImg">
+    <img class="p-0 rounded" :src="project.coverImg" alt="coverImg">
 
   </div>
 </template>

@@ -3,9 +3,9 @@
 
         <span class="d-flex flex-column align-items-baseline rounded-pill">
 
-            <img :src="profile.picture" alt="" class="profile-picture border  border-dark ">
+            <img :src="profile.picture" alt="" class="profile-picture">
 
-            <div class="m-2 text-dark">{{ profile.name }}</div>
+            <div class="m-2 text-light">{{ profile.name }}</div>
 
 
         </span>
