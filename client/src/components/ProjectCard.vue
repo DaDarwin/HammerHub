@@ -18,8 +18,7 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, ref, onMounted } from 'vue';
+
 import { Project } from '../models/Project';
 import ProfileCard from './ProfileCard.vue';
 import { Account } from '../models/Account';
@@ -37,8 +36,15 @@ export default {
 
 
 <style lang="scss" scoped>
-img {
-  height: 30vh;
+.profile-picture {
+  border-radius: 50%;
+  height: 7vh;
+  width: 7vh;
+}
+
+.img {
+  overflow: hidden;
+  height: 23vh;
   object-fit: cover;
   object-position: center;
 }
