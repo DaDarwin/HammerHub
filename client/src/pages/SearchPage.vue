@@ -10,7 +10,20 @@
 
 
 
-      <div class="card rounded mb-2 mx-2 row">
+      <div class="bg-secondary rounded mb-2 mx-2 p-1 row border border-dark">
+
+        <div class="col-12 col-md-8 d-flex justify-content-between">
+
+          <form class="row justify-content-center rounded border border-dark">
+
+            <span v-for="worktype in worktypes" class="col-3 col-md-2 m-1">
+
+              <button class="btn btn-outline-primary border-2" :id="worktype" @click="this.applyFilter(worktype)">{{worktype}}</button>
+
+            </span>
+            
+          </form>
+        </div>
 
         <div class="col-12 col-md-4  my-2 rounded-pill">
           
@@ -23,17 +36,6 @@
           </form>
         </div>
 
-        <div class="col-12 col-md-8 d-flex justify-content-between">
-
-          <form class="d-flex">
-
-            <span v-for="worktype in worktypes" class="m-1">
-              <label :for="worktype">{{worktype}}</label>
-              <input class="" :id="worktype" type="checkbox">
-            </span>
-            
-          </form>
-        </div>
       </div>
 
       <div v-if="projects.length" class="row mx-2">
@@ -49,22 +51,23 @@
 
 
 
-  </div>
-</template>
-
-
-<script>
+    </div>
+  </template>
+  
+  
+  <script>
 import { AppState } from '../AppState';
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref, onMounted, watch, watchEffect } from 'vue';
 import { searchService } from '../services/SearchService.js'
 import ProjectCard from '../components/ProjectCard.vue';
 import ProfileCard from '../components/ProfileCard.vue'
 import Pop from '../utils/Pop';
 export default {
   setup() {
-        onMounted(() => {
-            getProfiles();
-        });
+    onMounted(() => {
+      getProfiles();
+    });
+    const filter = ref([])
         const query = ref({})
         async function getProfiles() {
             try {
@@ -78,7 +81,13 @@ export default {
           }
           return {
             profiles: computed(() => AppState.profiles),
-            projects: computed(()=> AppState.projects),
+            filter,
+            projects: computed(()=> {
+              if(filter.value.length){
+                return AppState.projects.filter(project => filter.value.includes(project.trade))
+              }
+              else return AppState.projects
+            }),
             query,
             worktypes:['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
 
@@ -88,6 +97,15 @@ export default {
               } catch (error) {
                 Pop.error(error)
               }
+            },
+            applyFilter(type){
+              const index = this.filter.findIndex(string=> string == type)
+              if(index == -1){
+                this.filter.push(type)
+                computed()
+              }
+              else this.filter.splice(index, 1)
+              
             }
         };
     },
