@@ -12,7 +12,7 @@ class ProjectsService {
 
   }
 
-  async getAccountProjects() {
+  async getProjectById() {
     const response = await api.get('api/projects')
     console.log('getting account projects', response.data)
     AppState.projects = response.data.map(newProject => new Project(newProject))

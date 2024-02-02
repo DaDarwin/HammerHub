@@ -1,37 +1,49 @@
 <template>
-  <div class="ProjectCard card border-dark m-3">
-    <div>
-      <img :src="project.creator.picture" alt="profile-picture">
-    </div>
-    <div class="text-center fs-3">
+  <div>
+    <img class="profile-picture p-2" :src="project.creator.picture" alt="">
+    {{ project.creator.name }}
+
+    <div class="text-center fs-4">
       {{ project.title }}
     </div>
-    <img :src="project.coverImg" :alt="coverImg">
+    <img class="img" :src="project.coverImg" :alt="project.coverImg">
 
   </div>
 </template>
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, ref, onMounted } from 'vue';
+
 import { Project } from '../models/Project';
+
+
+
+
+
 export default {
   props: { project: { type: Project, required: true } },
   setup() {
     return {
-      account: computed(() => AppState.account)
 
-    }
-  }
+
+    };
+  },
+
 };
 </script>
 
 
 
 <style lang="scss" scoped>
-img {
-  height: 30vh;
+.profile-picture {
+  border-radius: 50%;
+  height: 7vh;
+  width: 7vh;
+}
+
+.img {
+  overflow: hidden;
+  height: 23vh;
   object-fit: cover;
   object-position: center;
 }

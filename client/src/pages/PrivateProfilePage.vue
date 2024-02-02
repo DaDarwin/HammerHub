@@ -50,7 +50,7 @@
       My Projects
     </div>
     <div class="row">
-      <div class="col-12 col-md-4 " v-for="project in projects">
+      <div class="col-12 col-md-3 card  m-2" v-for="project in projects">
         <ProjectCard :project="project" />
       </div>
     </div>
@@ -71,15 +71,15 @@ import { RouterLink } from 'vue-router';
 
 export default {
   setup() {
-    async function getAccountProjects() {
+    async function getProjectById() {
       try {
-        await projectsService.getAccountProjects()
+        await projectsService.getProjectById()
       } catch (error) {
         Pop.error(error)
       }
     }
     onMounted(() => {
-      getAccountProjects()
+      getProjectById()
     })
     const projectData = ref({ trade: '' })
 
@@ -88,7 +88,7 @@ export default {
       projectData.value = { trade: '' }
     }
     return {
-      getAccountProjects,
+      getProjectById,
       tradeTypes: ['planning', 'foundation', 'framing', 'electrical', 'plumbing', 'siding', 'roofing', 'drywall', 'landscaping', 'concrete work', 'tile work', 'cabinetry', 'HVAC', 'windows', 'other'],
       projectData,
       resetProjectForm,
